@@ -7,8 +7,8 @@ namespace Test.BackgroundThreads
     public class ViewModel: NotifyBase
     {
         // Define a delegate for the callback method
-        delegate void BackgroundUiUpdateDelegate(int value);
-        BackgroundUiUpdateDelegate _backgroundUiUpdateDelegate;
+        Action<int> _backgroundUiUpdateDelegate;
+
         private string _counter;
 
         public string Counter
@@ -40,7 +40,7 @@ namespace Test.BackgroundThreads
                 // Invoke the callback method. This can be invoked after processing is completed too.
                 _backgroundUiUpdateDelegate.Invoke(i);
 
-                Thread.Sleep(10);
+                Thread.Sleep(100);
             }
         }
 
